@@ -1,0 +1,104 @@
+/* style.css */
+:root {
+    --primary: #d35400; /* Burnt orange for food appetite */
+    --dark: #333;
+    --light: #f4f4f4;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+nav a {
+    text-decoration: none;
+    color: var(--dark);
+    margin-right: 15px;
+    font-weight: bold;
+}
+nav .logo { color: var(--primary); font-weight: 900; font-size: 1.2rem; }
+
+/* Container */
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+
+/* Hero Section (Screen 1) */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: #ddd; /* Placeholder for Image Background */
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 30px;
+}
+.hero h1 { margin: 0 0 20px 0; font-size: 3rem; color: var(--primary); }
+
+/* Horizontal Scroll (Screen 1) */
+.scroll-section h2 { margin-left: 20px; }
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 20px;
+    white-space: nowrap;
+}
+.food-card {
+    min-width: 150px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    text-decoration: none;
+    color: var(--dark);
+    transition: transform 0.2s;
+}
+.food-card:hover { transform: translateY(-5px); }
+.food-card img { width: 100%; border-radius: 8px; height: 120px; object-fit: cover; }
+
+/* Search & Grid (Screen 3) */
+.search-bar {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Details View (Screen 2) */
+.detail-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.detail-left { flex: 1; min-width: 300px; }
+.detail-left img { width: 100%; border-radius: 10px; }
+.detail-right { flex: 1.5; position: relative; }
+.fav-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 2rem;
+    color: red;
+    cursor: pointer;
+}
+.section-title { font-weight: bold; margin-top: 20px; display: block; font-size: 1.2rem; }
