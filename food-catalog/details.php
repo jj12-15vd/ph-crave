@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'data.php';
 
 // Get ID from URL, default to 1 if missing
@@ -39,10 +40,15 @@ if(!$food) { die("Food not found!"); }
                 <span class="section-title">Description</span>
                 <p><?php echo $food['desc']; ?></p>
             </div>
-
+            
             <div class="detail-right">
-                <div class="fav-btn" onclick="addLike(<?php echo $food['id']; ?>)">
-                    ♡ <span id="like-count"><?php echo $food['favorites'] ?? 0; ?></span>
+                <?php 
+                    $isLiked = isset($_SESSION['liked_foods']) && in_array($food['id'], $_SESSION['liked_foods']);
+                    $heartColor = $isLiked ? 'red' : 'black'; // Red if liked, Black if not
+                ?>
+
+                <div class="fav-btn" onclick="addLike(<?php echo $food['id']; ?>)" style="color: <?php echo $heartColor; ?>;">
+                ♡ <span id="like-count"><?php echo $food['favorites'] ?? 0; ?></span>
                 </div>
                 
                 <h1><?php echo $food['name']; ?></h1>
@@ -61,19 +67,28 @@ if(!$food) { die("Food not found!"); }
 
     <script>
     function addLike(foodId) {
+        const btn = document.querySelector('.fav-btn'); // Get the button element
         const formData = new FormData();
         formData.append('id', foodId);
 
-        fetch('like_food.php', {
+        fetch('favorites.php', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.text())
-        .then(newCount => {
-            document.getElementById('like-count').innerText = newCount;
-        })
-        .catch(error => console.error('Error:', error));
-    }
+    .then(response => response.text())
+    .then(newCount => {
+        // Update number
+        document.getElementById('like-count').innerText = newCount;
+        
+        // Toggle Color visually
+        if (btn.style.color === 'red') {
+            btn.style.color = 'black';
+        } else {
+            btn.style.color = 'red';
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
     </script>
 
 </body>
