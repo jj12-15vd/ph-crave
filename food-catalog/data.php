@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
-$db   = 'ph-crave-db'; 
-$user = 'postgres';    
+$db   = 'postgres'; 
+$user = 'jvjd';    
 $pass = ''; // no password set for local dev
 
 $dsn = "pgsql:host=$host;dbname=$db";
@@ -33,7 +33,8 @@ foreach($db_results as $row) {
         'desc'         => $row['description'], // Mapping DB 'description' to UI 'desc'
         'recipe'       => $row['recipe'],
         'instructions' => $row['instructions'],
-        'image'        => $row['image_url']    // Mapping DB 'image_url' to UI 'image'
+        'image'        => $row['image_url'],    // Mapping DB 'image_url' to UI 'image'
+        'favorites'    => $row['favorites']
     ];
 }
 ?>

@@ -15,6 +15,10 @@ if(!$food) { die("Food not found!"); }
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $food['name']; ?> - PH CRAVE</title>
     <link rel="stylesheet" href="/styles/styles.css">
+    
+    <style>
+        .fav-btn { cursor: pointer; user-select: none; }
+    </style>
 </head>
 <body>
 
@@ -37,7 +41,11 @@ if(!$food) { die("Food not found!"); }
             </div>
 
             <div class="detail-right">
-                <div class="fav-btn">♡</div> <h1><?php echo $food['name']; ?></h1>
+                <div class="fav-btn" onclick="addLike(<?php echo $food['id']; ?>)">
+                    ♡ <span id="like-count"><?php echo $food['favorites'] ?? 0; ?></span>
+                </div>
+                
+                <h1><?php echo $food['name']; ?></h1>
                 
                 <span class="section-title">Recipe / Ingredients</span>
                 <p><em><?php echo $food['recipe']; ?></em></p>
@@ -50,6 +58,23 @@ if(!$food) { die("Food not found!"); }
 
         </div>
     </div>
+
+    <script>
+    function addLike(foodId) {
+        const formData = new FormData();
+        formData.append('id', foodId);
+
+        fetch('like_food.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(newCount => {
+            document.getElementById('like-count').innerText = newCount;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    </script>
 
 </body>
 </html>
