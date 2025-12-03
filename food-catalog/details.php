@@ -8,7 +8,6 @@ $food = isset($foods[$id]) ? $foods[$id] : null;
 
 if(!$food) { die("Food not found!"); }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +27,7 @@ if(!$food) { die("Food not found!"); }
         <div>
             <a href="index.php">Home</a>
             <a href="index.php?q=">Browse</a>
-            <a href="#">Favorites</a>
+            <a href="index.php?view=favorites">Favorites</a>
         </div>
     </nav>
 
