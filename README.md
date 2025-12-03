@@ -1,24 +1,9 @@
 # Food Catalog
 
-## Languages
+## Technologies Used
 
 - PHP
 - HTML
 - CSS
 - JS
-
-### Home Page
-
-![Home Page](home.png)
-
-### Search Page
-
-![Search Page](search.png)
-
-### Dish Details
-
-![Details](details.png)
-
-### Favorites Page
-
-![Favorites](favorites.png)
+- SQL (PostgreSQL)
